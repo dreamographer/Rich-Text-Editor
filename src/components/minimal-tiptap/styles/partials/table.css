@@ -1,0 +1,144 @@
+/* Basic editor styles */
+.tiptap {
+	:first-child {
+		margin-top: 0;
+	}
+
+	/* Table-specific styling */
+	table {
+		border-collapse: collapse;
+		margin: 0;
+		overflow: hidden;
+		table-layout: fixed;
+		width: 100%;
+
+		td,
+		th {
+			border: 1px solid rgba(14, 14, 14, 0.2);
+			box-sizing: border-box;
+			min-width: 1em;
+			padding: 6px 8px;
+			position: relative;
+			vertical-align: top;
+
+			> * {
+				margin-bottom: 0;
+			}
+		}
+
+		th {
+			background-color: #f5f4f3;
+			font-weight: bold;
+			text-align: left;
+		}
+
+		.selectedCell:after {
+			content: '';
+			background: rgba(14, 14, 14, 0.04);
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			pointer-events: none;
+			position: absolute;
+			z-index: 2;
+		}
+
+		.column-resize-handle {
+			position: absolute;
+			background-color: purple;
+			bottom: -2px;
+			pointer-events: none;
+			position: absolute;
+			right: -2px;
+			top: 0;
+			width: 4px;
+		}
+	}
+
+	.tableWrapper {
+		margin: 1.5rem 0;
+		overflow-x: auto;
+	}
+
+	&.resize-cursor {
+		cursor: ew-resize;
+		cursor: col-resize;
+	}
+}
+
+/* Table resizing styles */
+/* .minimal-tiptap-editor .ProseMirror {
+	padding-bottom: 20px;
+  .tableWrapper {
+    overflow-x: auto;
+    padding: 1rem 0;
+    margin-bottom: 1rem;
+    position: relative;
+    
+    table {
+      border-collapse: collapse;
+      table-layout: fixed;
+      width: 100%;
+      overflow: hidden;
+      margin: 0;
+    }
+  } */
+
+  /* Remove the :after pseudo-element and handle spacing differently */
+  .tableWrapper + p {
+    margin-top: 1em;
+    min-height: 1.5em;
+    position: relative;
+    caret-color: black; /* Explicitly set cursor color */
+  }
+
+  /* Ensure paragraphs after tables are visible and interactive */
+  table + p {
+    position: relative;
+    min-height: 1.5em;
+    caret-color: black;
+  }
+
+  .column-resize-handle {
+    position: absolute;
+    right: -2px;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background-color: hsl(var(--primary));
+    pointer-events: none;
+  }
+
+  &.resize-cursor {
+    cursor: col-resize;
+  }
+
+  /* Selected cell styling */
+  .selectedCell {
+    position: relative;
+    
+    &:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background: rgba(200, 200, 255, 0.2);
+      pointer-events: none;
+    }
+  }
+
+  /* Ensure empty paragraphs show cursor */
+  p.is-empty:not(:first-child) {
+    position: relative;
+    min-height: 1.5em;
+    caret-color: black;
+    
+    &:before {
+      content: '';
+      display: inline;
+      white-space: pre;
+    }
+	}
